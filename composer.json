@@ -1,0 +1,22 @@
+{
+  "name": "rmiranda/molle",
+  "description": "Componentes base para una aplicación CLI sobre PHP",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Ricardo Miranda",
+      "email": "rgmiranda@live.com.ar"
+    }
+  ],
+  "minimum-stability": "stable",
+  "autoload": {
+    "psr-4": {
+      "Molle\\": "src/",
+      "Molle\\Tests\\": "tests/"
+    }
+  },
+  "require": {
+    "ulrichsg/getopt-php": "^3.3"
+  }
+}

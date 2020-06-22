@@ -1,0 +1,46 @@
+<?php
+
+namespace Molle\Commands;
+
+use GetOpt\GetOpt;
+use Molle\Command;
+
+class <class> extends Command
+{
+    public function handle(GetOpt $opt): int
+    {
+        // Awesome code to do something...
+        return 0;
+    }
+
+    public function getName(): string
+    {
+        return '<name>';
+    }
+
+    public function getShortDescription(): string
+    {
+        return '<shortDescription>';
+    }
+
+    public function getDescription(): string
+    {
+        return '<description>';
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getOperands()
+    {
+        return [];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getOptions()
+    {
+        return [];
+    }
+}
