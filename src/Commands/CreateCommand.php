@@ -23,7 +23,8 @@ class CreateCommand extends Command
         }
 
         // Command creation
-        $contents = file_get_contents(MOLLEDIR . '/resources/command-template.php.txt');
+        $resourceDir = dirname(dirname(__DIR__)) . '/resources';
+        $contents = file_get_contents("{$resourceDir}/command-template.php.txt");
         $contents = str_replace('<description>', $description, $contents);
         $contents = str_replace('<shortDescription>', $shortDescription, $contents);
         $contents = str_replace("<name>", $name, $contents);
