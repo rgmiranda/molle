@@ -23,7 +23,7 @@ class CreateCommand extends Command
         }
 
         // Command creation
-        $contents = file_get_contents(APPDIR . '/resources/command-template.php.txt');
+        $contents = file_get_contents(MOLLEDIR . '/resources/command-template.php.txt');
         $contents = str_replace('<description>', $description, $contents);
         $contents = str_replace('<shortDescription>', $shortDescription, $contents);
         $contents = str_replace("<name>", $name, $contents);
@@ -45,12 +45,12 @@ class CreateCommand extends Command
 
     public function getShortDescription(): string
     {
-        return 'Creación de nuevo comando';
+        return 'Creates a new command';
     }
 
     public function getDescription(): string
     {
-        return 'Comando para la creación de un nuevo comando dentro de Molle';
+        return 'Command used for the creation of new commands';
     }
 
     /**

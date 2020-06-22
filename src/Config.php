@@ -45,7 +45,7 @@ class Config implements ArrayAccess
 
     private function __construct()
     {
-        $inifile = realpath(getcwd() . '/config.ini');
+        $inifile = APPDIR . '/config.ini';
         if (!file_exists($inifile)) {
             throw new Exception('No se ha encontrado el archivo INI de configuración');
         }

@@ -44,16 +44,16 @@ class App
     {
         $this->stdOut = new CliPrinter;
         $this->stdErr = new StreamPrinter(STDERR ??'php://stderr');
-        $logFile = dirname(__DIR__) . '/logs/' . date('\l\o\g\_Ymd');
+        $logFile = APPDIR . '/logs/' . date('\l\o\g\_Ymd');
         $this->logger = new LogPrinter($logFile);
 
         $this->getOpt = new GetOpt();
         $this->getOpt->addOptions([
             Option::create('v', 'version', GetOpt::NO_ARGUMENT)
-                ->setDescription('Muestra la información de la versión y sale'),
+                ->setDescription('Display version information and exits'),
 
             Option::create('h', 'help', GetOpt::NO_ARGUMENT)
-                ->setDescription('Muestra este texto y finaliza'),
+                ->setDescription('Display help information'),
         ]);
 
     }
@@ -129,25 +129,27 @@ class App
                 }
             }
         } catch (ArgumentException $exception) {
-            file_put_contents('php://stderr', $exception->getMessage() . PHP_EOL);
-            echo PHP_EOL . $this->getOpt->getHelpText();
-            exit;
+            $this->error($exception->getMessage() . PHP_EOL);
+            $this->log(LogPrinter::LEVEL_ERROR, $exception->getMessage());
+            $this->out(PHP_EOL . $this->getOpt->getHelpText());
+            exit(1);
         }
 
         // show version and quit
         if ($this->getOpt->getOption('version')) {
-            echo sprintf('%s: %s' . PHP_EOL, APPNAME, APPVERSION);
-            exit;
+            $this->out(sprintf('%s: %s' . PHP_EOL, APPNAME, APPVERSION));
+            exit(0);
         }
 
         // show help and quit
         $command = $this->getOpt->getCommand();
         if (!$command || $this->getOpt->getOption('help')) {
-            echo $this->getOpt->getHelpText();
-            exit;
+            $this->out($this->getOpt->getHelpText());
+            exit(0);
         }
 
         // call the requested command
+        $this->log(LogPrinter::LEVEL_INFO, 'Execute: ' . $command->getName());
         return call_user_func([$command, 'handle'], $this->getOpt);
     }    
 }
