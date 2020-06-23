@@ -1,6 +1,6 @@
 {
   "name": "rmiranda/molle",
-  "description": "Componentes base para una aplicación CLI sobre PHP",
+  "description": "Base components for a PHP Molle CLI application",
   "type": "library",
   "license": "MIT",
   "authors": [

@@ -4,13 +4,12 @@ namespace Molle\Commands;
 
 use GetOpt\GetOpt;
 use Molle\Command;
-use Molle\Cli\Format;
 
 class TestCommand extends Command
 {
     public function handle(GetOpt $opt): int
     {
-        $this->app->out('Probando' . PHP_EOL, Format::COLOR_LIGHT_BLUE);
+        $this->app->out('Hello world!' . PHP_EOL);
         return 0;
     }
 
@@ -21,12 +20,12 @@ class TestCommand extends Command
 
     public function getShortDescription(): string
     {
-        return 'Prueba de la aplicación';
+        return 'Test command';
     }
 
     public function getDescription(): string
     {
-        return 'Comando de prueba';
+        return 'Test command';
     }
     
     /**
