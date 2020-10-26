@@ -1,12 +1,9 @@
 <?php
 
-require 'vendor/autoload.php';
-
 use Molle\App;
 
-defined('APPDIR') or define('APPDIR', dirname(__DIR__));
-defined('APPNAME') or define('APPNAME', 'molle');
-defined('APPVERSION') or define('APPVERSION', '1.0.0-beta');
+require __DIR__ . '/../vendor/autoload.php';
+require __DIR__ . '/constants.php';
 
 return function() {
     $app = new App();

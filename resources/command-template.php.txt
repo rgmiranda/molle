@@ -1,6 +1,6 @@
 <?php
 
-namespace Molle\Commands;
+namespace App\Commands;
 
 use GetOpt\GetOpt;
 use Molle\Command;
