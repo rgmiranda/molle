@@ -16,7 +16,7 @@ class CreateCommand extends Command
         $shortDescription = $opt->getOption('short-description');
         $class = ucfirst(strtolower($name)) . 'Command';
         
-        $filename = __DIR__ . "/{$class}.php";
+        $filename = APPDIR . "/src/Commands/{$class}.php";
         $rs = $this->app->prompt(Format::apply("This action will create the \"{$filename}\" file. ¿Desea continuar? (S/N) >", Format::COLOR_LIGHT_BLUE));
         if (empty($rs) || strtolower($rs[0]) !== 's') {
             return 0;
