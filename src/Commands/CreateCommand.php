@@ -22,6 +22,7 @@ class CreateCommand extends Command
             return 0;
         }
 
+        $ns = APPNS;
         // Command creation
         $resourceDir = APPDIR . '/resources';
         $contents = file_get_contents("{$resourceDir}/command-template.php.txt");
@@ -29,11 +30,12 @@ class CreateCommand extends Command
         $contents = str_replace('<shortDescription>', $shortDescription, $contents);
         $contents = str_replace("<name>", $name, $contents);
         $contents = str_replace("<class>", $class, $contents);
+        $contents = str_replace('<ns>', $ns, $contents);
         file_put_contents($filename, $contents);
 
         // Command registration
         $commands = file_get_contents(APPDIR . '/app/commands.php');
-        $commands = str_replace('use Molle\\App;', "use Molle\\App;\nuse Molle\\Commands\\{$class};", $commands);
+        $commands = str_replace('use Molle\\App;', "use Molle\\App;\nuse {$ns}\\Commands\\{$class};", $commands);
         $commands = str_replace('};', "    \$app->registerCommand({$class}::class);\n};", $commands);
         file_put_contents(APPDIR . '/app/commands.php', $commands);
         return 0;
