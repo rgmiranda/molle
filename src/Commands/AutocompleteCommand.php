@@ -6,7 +6,6 @@ use GetOpt\GetOpt;
 use GetOpt\Operand;
 use Molle\Cli\Format;
 use Molle\Command;
-use Molle\Config;
 
 class AutocompleteCommand extends Command
 {
@@ -50,14 +49,13 @@ class AutocompleteCommand extends Command
      */
     public function getOperands()
     {
-        $config = Config::getItem('autocomplete');
-        $shells = explode(',', $config['shells']);
+        $shells = ['bash', 'zsh'];
         return [
             Operand::create('shell', Operand::REQUIRED)
-                ->setDescription("Shell para el cual se genera el script ({$config['shells']})")
+                ->setDescription('Shell para el cual se genera el script (' . implode(', ', $shells) . ')')
                 ->setValidation(function ($value) use ($shells) {
                     return in_array($value, $shells);
-                }, "Debe tomar alguno de los siguientes valores: {$config['shells']}")
+                }, "Debe tomar alguno de los siguientes valores: " . implode(', ', $shells))
         ];
     }
 
